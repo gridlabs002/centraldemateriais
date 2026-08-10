@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central de Materiais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF8F4;
+    --card: #FFFFFF;
+    --ink: #17181A;
+    --ink-soft: #55585E;
+    --accent: #1D9BF0;
+    --line: #E7E3DA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', sans-serif;
+  }
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 90px 24px 50px;
+    text-align: center;
+  }
+  .hero .tag {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: clamp(34px, 5vw, 48px);
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .grid {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px 24px 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .mat {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .mat:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(23,24,26,0.08); }
+  .mat-cover {
+    aspect-ratio: 16/10;
+    background: linear-gradient(150deg, rgba(29,155,240,0.14), rgba(29,155,240,0.06));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 22px;
+  }
+  .mat-type {
+    align-self: flex-start;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(29,155,240,0.12);
+    border: 1px solid rgba(29,155,240,0.28);
+    padding: 5px 11px;
+    border-radius: 5px;
+    font-weight: 600;
+  }
+  .mat-cover-title {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .mat-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+  .mat-marca {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .mat-body h3 { font-size: 17px; line-height: 1.35; margin-bottom: 20px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    background: transparent;
+    width: 100%;
+    margin-top: auto;
+    transition: background .2s;
+  }
+  .btn:hover { background: rgba(29,155,240,0.08); }
+
+  footer {
+    padding: 40px 24px 60px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+  footer p {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* GATE MODAL */
+  .gate-overlay { position: fixed; inset: 0; background: rgba(23,24,26,0.55); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 999; opacity: 0; pointer-events: none; transition: opacity .2s; padding: 20px; }
+  .gate-overlay.open { opacity: 1; pointer-events: auto; }
+  .gate-card { position: relative; width: 100%; max-width: 420px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 36px 30px; box-shadow: 0 30px 70px rgba(23,24,26,0.25); }
+  .gate-close { position: absolute; top: 14px; right: 16px; background: none; border: none; color: var(--ink-soft); font-size: 22px; cursor: pointer; line-height: 1; }
+  .gate-tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+  .gate-title { font-family: 'Lora', serif; font-weight: 700; font-size: 22px; line-height: 1.3; margin-bottom: 10px; }
+  .gate-sub { font-size: 14px; color: var(--ink-soft); margin-bottom: 22px; }
+  .gate-form { display: flex; flex-direction: column; gap: 12px; }
+  .gate-form input { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 13px 15px; font-size: 14px; font-family: 'Public Sans', sans-serif; color: var(--ink); }
+  .gate-form input::placeholder { color: var(--ink-soft); }
+  .gate-form input:focus { outline: none; border-color: var(--accent); }
+  .gate-form .btn { background: var(--accent); color: #fff; border: none; margin-top: 4px; }
+  .gate-form .btn:hover { background: #1a8bd9; }
+  .gate-privacy { font-size: 11px; color: var(--ink-soft); text-align: center; margin-top: 14px; }
+  .gate-thanks { display: none; text-align: center; padding: 10px 0; }
+  .gate-ico { font-size: 32px; color: var(--accent); margin-bottom: 12px; }
+  .gate-thanks h4 { font-family: 'Lora', serif; font-size: 19px; margin-bottom: 8px; }
+  .gate-thanks p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="tag">Central de materiais</div>
+  <h1>Análises e materiais gratuitos</h1>
+  <p>Preenche seus dados uma vez e libera acesso a tudo.</p>
+</section>
+
+<div class="grid">
+
+  <div class="mat">
+    <div class="mat-cover">
+      <div class="mat-type">Análise de caso</div>
+      <div class="mat-cover-title">Como o Pastor da UAI vende 500 carros/mês</div>
+    </div>
+    <div class="mat-body">
+      <div class="mat-marca">Edney Ulisses</div>
+      <h3>Raio-X: as 5 técnicas do Pastor da UAI</h3>
+      <button class="btn" onclick="abrirGate('Análise de caso','Raio-X: as 5 técnicas do Pastor da UAI','pastor-uai.html')">Acessar grátis →</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Central de Materiais</p>
+</footer>
+
+<!-- GATE MODAL -->
+<div class="gate-overlay" id="gateOverlay">
+  <div class="gate-card">
+    <button class="gate-close" onclick="fecharGate()">×</button>
+    <div id="gateForm">
+      <div class="gate-tag" id="gateTag">Material</div>
+      <h3 class="gate-title" id="gateTitle">Título do material</h3>
+      <p class="gate-sub">Preencha abaixo e o material abre na hora.</p>
+      <form class="gate-form" id="gateFormEl">
+        <input type="text" name="nome" placeholder="Seu nome" required>
+        <input type="email" name="email" placeholder="Seu e-mail" required>
+        <input type="tel" name="whatsapp" placeholder="WhatsApp (com DDD)" required>
+        <input type="hidden" name="material" id="gateMaterial">
+        <input type="hidden" name="_subject" id="gateSubject">
+        <button type="submit" class="btn">Acessar material →</button>
+      </form>
+      <p class="gate-privacy">Seus dados ficam só com a gente. Sem spam.</p>
+    </div>
+    <div class="gate-thanks" id="gateThanks">
+      <div class="gate-ico">✓</div>
+      <h4>Abrindo agora</h4>
+      <p>O material abriu em uma nova aba.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  let gateUrl = '';
+  function abrirGate(tag, titulo, url) {
+    gateUrl = url;
+    document.getElementById('gateTag').textContent = tag;
+    document.getElementById('gateTitle').textContent = titulo;
+    document.getElementById('gateMaterial').value = titulo;
+    document.getElementById('gateSubject').value = 'Central de Materiais — Lead: ' + titulo;
+    document.getElementById('gateForm').style.display = '';
+    document.getElementById('gateThanks').style.display = 'none';
+    document.getElementById('gateOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function fecharGate() {
+    document.getElementById('gateOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      document.getElementById('gateFormEl').reset();
+      document.getElementById('gateForm').style.display = '';
+      document.getElementById('gateThanks').style.display = 'none';
+    }, 300);
+  }
+  document.getElementById('gateOverlay').addEventListener('click', function(e) {
+    if (e.target === this) fecharGate();
+  });
+  document.getElementById('gateFormEl').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('[type=submit]');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+    try {
+      await fetch('https://hook.gridlabs.digital/webhook/9914f701-f53e-4e2e-9efa-422a1681e3a7', {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { Accept: 'application/json' }
+      });
+    } catch(_) {}
+    window.open(gateUrl, '_blank');
+    document.getElementById('gateForm').style.display = 'none';
+    document.getElementById('gateThanks').style.display = 'block';
+    setTimeout(fecharGate, 500);
+  });
+</script>
+
+</body>
+</html>

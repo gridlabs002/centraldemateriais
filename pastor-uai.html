@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Raio-X: Pastor da UAI — Edney Ulisses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF8F4;
+    --card: #FFFFFF;
+    --ink: #17181A;
+    --ink-soft: #55585E;
+    --accent: #1D9BF0;
+    --line: #E7E3DA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 48px 20px 80px;
+  }
+  .page {
+    width: 100%;
+    max-width: 760px;
+  }
+  .masthead {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .masthead img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+  .masthead .nome {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .masthead .label {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  h1 {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .subtitulo {
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin-bottom: 44px;
+    line-height: 1.5;
+  }
+  .fonte-linha {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: -8px;
+    margin-bottom: 44px;
+  }
+  .fonte-linha a { color: var(--ink-soft); text-decoration: underline; }
+  h2 {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 56px 0 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .frase-chave {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--ink);
+    text-align: center;
+    margin: 32px 0 8px;
+  }
+  .tecnica {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .tecnica-numero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+  .tecnica h3 {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 21px;
+    margin-bottom: 12px;
+  }
+  .tecnica p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .aplicar {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .aplicar b {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .limites ul {
+    list-style: none;
+    padding: 0;
+  }
+  .limites li {
+    font-size: 16px;
+    line-height: 1.65;
+    padding-left: 24px;
+    position: relative;
+    margin-bottom: 18px;
+  }
+  .limites li::before {
+    content: "•";
+    color: var(--accent);
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+  }
+  .sintese {
+    font-size: 17px;
+    line-height: 1.7;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+    margin-top: 8px;
+  }
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+  }
+  @media print {
+    body { padding: 0; background: #fff; }
+    .tecnica, .sintese { break-inside: avoid; }
+    @page { size: A4; margin: 18mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <img src="assets/edney-avatar.jpg" alt="Edney Ulisses">
+    <div>
+      <div class="nome">Edney Ulisses</div>
+      <div class="label">Raio-X de estratégia</div>
+    </div>
+  </div>
+
+  <h1>Como o Pastor da UAI vende cerca de 500 carros por mês</h1>
+  <p class="subtitulo">5 técnicas reais que ele usa, e onde esse modelo tem limite. Material completo pra quem comentou PASTOR.</p>
+
+  <h2>Quem é</h2>
+  <p style="font-size:16px; line-height:1.65; margin-bottom:20px;">
+    Bispo Evandro, natural de Minas Gerais, hoje comanda a Uai Veículos em Socorro,
+    interior de São Paulo. A loja processa por volta de 500 veículos por mês e atrai
+    cliente de todo o Brasil, mesmo estando numa cidade pequena do interior.
+  </p>
+  <p class="fonte-linha">Fonte: <a href="https://www.odebatecampista.com.br/noticia/11049/campos-dos-goytacazes/campos-e-regiao/quem-e-o-pastor-evandro-que-esta-ganhando-o-brasil-vendendo-carros-e-falando-de-deus.html" target="_blank">O Debate Campista</a></p>
+  <p class="frase-chave">"Não é sobre carro, é sobre gente."</p>
+
+  <h2>As 5 técnicas</h2>
+
+  <div class="tecnica">
+    <div class="tecnica-numero">1</div>
+    <h3>Negociação ao vivo, sem corte</h3>
+    <p>Ele filma a negociação inteira, do começo ao fim, sem editar as partes estranhas
+    ou os momentos ruins. O cliente que assiste não vê um anúncio produzido, vê a venda
+    acontecendo de verdade, com hesitação, contraproposta e fechamento.</p>
+    <div class="aplicar"><b>Como aplicar:</b> não precisa ser live. Um vídeo curto mostrando
+    um trecho real de negociação (com autorização do cliente) já entrega a mesma sensação
+    de autenticidade que falta na maioria do conteúdo de concessionária, que só mostra o
+    carro brilhando na vitrine.</div>
+  </div>
+
+  <div class="tecnica">
+    <div class="tecnica-numero">2</div>
+    <h3>Fala como quem tá conversando, não vendendo</h3>
+    <p>Sem termo técnico, sem script de televendas, sem papo de "condições imperdíveis".
+    A linguagem dele é a mesma que ele usaria com um vizinho.</p>
+    <div class="aplicar"><b>Como aplicar:</b> revisar o script de atendimento do time
+    comercial procurando frase que só existe em treinamento de vendas e nunca em conversa
+    real. Cortar essas frases já reduz a resistência do cliente antes de qualquer
+    negociação de preço.</div>
+  </div>
+
+  <div class="tecnica">
+    <div class="tecnica-numero">3</div>
+    <h3>Identidade pessoal dentro do processo, não ao lado dele</h3>
+    <p>Ele começa o dia com oração e fecha venda com palavra de bênção. Não é "conteúdo de
+    fé" publicado separado do "conteúdo de venda": é a mesma peça, o mesmo vídeo, a mesma
+    pessoa.</p>
+    <div class="aplicar"><b>Como aplicar:</b> o gestor comercial não precisa (nem deve)
+    copiar a fé como gancho. O que vale copiar é o princípio: a identidade real de quem
+    vende integrada ao processo, em vez de um personagem de marketing separado da pessoa
+    que realmente atende o cliente.</div>
+  </div>
+
+  <div class="tecnica">
+    <div class="tecnica-numero">4</div>
+    <h3>Não edita o imprevisto pra fora</h3>
+    <p>O vídeo mais viral dele nasceu de uma negociação travada por poucos centavos, uma
+    situação pequena e real que a maioria cortaria da edição por parecer "feia" ou pouco
+    profissional.</p>
+    <div class="aplicar"><b>Como aplicar:</b> o imprevisto genuíno (uma objeção difícil, um
+    cliente implicante, uma negociação que quase não fecha) costuma gerar mais
+    identificação e alcance do que o conteúdo institucional polido. Guardar esses momentos
+    reais em vez de descartar é material de conteúdo, não vergonha a esconder.</div>
+  </div>
+
+  <div class="tecnica">
+    <div class="tecnica-numero">5</div>
+    <h3>Constância e marca de família</h3>
+    <p>Ele posta o dia a dia da loja, não só campanha pontual. A esposa, Bispa Aline,
+    também aparece no conteúdo, o que reforça a sensação de marca familiar, não de empresa
+    distante.</p>
+    <div class="aplicar"><b>Como aplicar:</b> publicar rotina real (chegada de carro,
+    entrega de chave, bastidor de time) com frequência alta pesa mais no reconhecimento de
+    marca do que poucas campanhas grandes e caras.</div>
+  </div>
+
+  <h2>Onde o modelo tem limite</h2>
+  <div class="limites">
+    <ul>
+      <li><b>Funciona pra volume popular, não pra ticket alto.</b> O que convence alguém a
+      comprar um usado de entrada não é o mesmo argumento que convence um financiamento de
+      zero km ou uma venda B2B pra flotista.</li>
+      <li><b>Depende de uma pessoa só.</b> Um negócio construído em torno de um personagem
+      forte carrega risco real de continuidade se essa pessoa sair de cena, adoecer ou
+      simplesmente decidir parar.</li>
+      <li><b>Viralizar não é o mesmo que ter processo comercial.</b> O alcance é real, mas
+      alcance sem funil, sem CRM e sem padronização de atendimento é volume que pode se
+      perder na conversão.</li>
+    </ul>
+  </div>
+
+  <h2>Síntese</h2>
+  <div class="sintese">
+    A lição não é imitar pastor. É entender que autenticidade de processo vale mais que
+    estética de anúncio, e que quem já tem processo comercial real por trás pode se dar ao
+    luxo de mostrar esse processo sem medo, em vez de esconder atrás de campanha genérica.
+  </div>
+
+  <footer>
+    <span>Edney Ulisses · Raio-X de estratégia</span>
+    <span>@edneyulisses</span>
+  </footer>
+
+</div>
+</body>
+</html>
