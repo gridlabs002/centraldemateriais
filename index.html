@@ -315,7 +315,7 @@
     btn.textContent = 'Enviando...';
     btn.disabled = true;
     try {
-      await fetch('https://hook.gridlabs.digital/webhook/9914f701-f53e-4e2e-9efa-422a1681e3a7', {
+      await fetch('https://formspree.io/f/xoeadkbo', {
         method: 'POST',
         body: new FormData(this),
         headers: { Accept: 'application/json' }
