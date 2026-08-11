@@ -13,148 +13,225 @@
     --card: #FFFFFF;
     --ink: #17181A;
     --ink-soft: #55585E;
-    --accent: #1D9BF0;
+    --accent: #1D9BF0;       /* decorativo: ícones, tags, bordas, focus */
+    --accent-ink: #0B6FB8;   /* texto/botão sobre claro, AA (5.3:1) */
     --line: #E7E3DA;
+    --radius: 16px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; }
   body {
     background: var(--bg);
     color: var(--ink);
     font-family: 'Public Sans', sans-serif;
+    line-height: 1.5;
   }
-  .hero {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 90px 24px 50px;
-    text-align: center;
-  }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .hero { padding: 88px 24px 64px; }
+  .hero-inner { max-width: 640px; margin: 0 auto; text-align: center; }
   .hero .tag {
-    font-size: 13px;
+    display: inline-block;
+    font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 18px;
+    color: var(--accent-ink);
+    font-weight: 700;
+    margin-bottom: 20px;
   }
   .hero h1 {
     font-family: 'Lora', serif;
     font-weight: 700;
-    font-size: clamp(34px, 5vw, 48px);
+    font-size: clamp(32px, 4.6vw, 44px);
     line-height: 1.2;
     margin-bottom: 16px;
     letter-spacing: -0.01em;
   }
   .hero p {
-    font-size: 18px;
+    font-size: 17px;
     color: var(--ink-soft);
-    max-width: 46ch;
+    max-width: 44ch;
     margin: 0 auto;
     line-height: 1.6;
   }
-  .grid {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 10px 24px 100px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+
+  /* MATERIAL EM DESTAQUE */
+  .featured {
+    max-width: 1040px;
+    margin: 0 auto 28px;
+    padding: 0 24px;
   }
-  .mat {
+  .featured-card {
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 16px;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform .25s ease, box-shadow .25s ease;
+    box-shadow: 0 1px 2px rgba(23,24,26,0.04);
+    transition: box-shadow .25s ease, transform .25s ease;
   }
-  .mat:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(23,24,26,0.08); }
-  .mat-cover {
-    aspect-ratio: 16/10;
-    background: linear-gradient(150deg, rgba(29,155,240,0.14), rgba(29,155,240,0.06));
+  .featured-card:hover { box-shadow: 0 16px 36px rgba(23,24,26,0.09); transform: translateY(-2px); }
+  .featured-visual {
+    position: relative;
+    background:
+      radial-gradient(circle at 25% 20%, rgba(29,155,240,0.16), transparent 55%),
+      linear-gradient(160deg, #F3F8FC, #EAF3FA);
+    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 22px;
+    min-height: 280px;
   }
-  .mat-type {
+  .featured-visual .icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid rgba(29,155,240,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(29,155,240,0.14);
+  }
+  .featured-visual .icon svg { width: 24px; height: 24px; stroke: var(--accent-ink); fill: none; stroke-width: 1.6; }
+  .featured-visual .numeral {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 96px;
+    line-height: 1;
+    color: rgba(11,111,184,0.14);
+  }
+  .featured-body {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .featured-type {
+    display: inline-flex;
     align-self: flex-start;
     font-size: 11px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--accent);
-    background: rgba(29,155,240,0.12);
-    border: 1px solid rgba(29,155,240,0.28);
+    color: var(--accent-ink);
+    background: rgba(29,155,240,0.10);
+    border: 1px solid rgba(29,155,240,0.24);
     padding: 5px 11px;
-    border-radius: 5px;
-    font-weight: 600;
+    border-radius: 999px;
+    font-weight: 700;
+    margin-bottom: 18px;
   }
-  .mat-cover-title {
+  .featured-body h2 {
     font-family: 'Lora', serif;
     font-weight: 600;
-    font-size: 19px;
+    font-size: 24px;
     line-height: 1.3;
-    color: var(--ink);
+    margin-bottom: 12px;
   }
-  .mat-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-  .mat-marca {
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+  .featured-body > p {
+    font-size: 15px;
     color: var(--ink-soft);
-    font-weight: 600;
-    margin-bottom: 8px;
+    line-height: 1.65;
+    margin-bottom: 22px;
   }
-  .mat-body h3 { font-size: 17px; line-height: 1.35; margin-bottom: 20px; }
+  .featured-highlights {
+    list-style: none;
+    margin-bottom: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .featured-highlights li {
+    font-size: 14px;
+    color: var(--ink);
+    padding-left: 22px;
+    position: relative;
+  }
+  .featured-highlights li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .featured-marca {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: auto;
+    margin-bottom: 16px;
+  }
+  .featured-marca strong { color: var(--ink); font-weight: 600; }
+
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 14px 20px;
-    border-radius: 9px;
+    padding: 14px 22px;
+    border-radius: 10px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     cursor: pointer;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    background: transparent;
-    width: 100%;
-    margin-top: auto;
-    transition: background .2s;
+    border: none;
+    color: #fff;
+    background: var(--accent-ink);
+    transition: background .2s, transform .15s;
   }
-  .btn:hover { background: rgba(29,155,240,0.08); }
+  .btn:hover { background: #095a97; }
+  .btn:active { transform: scale(0.98); }
+
+  /* NOTA DE EM BREVE */
+  .em-breve {
+    max-width: 1040px;
+    margin: 8px auto 100px;
+    padding: 0 24px;
+  }
+  .em-breve p {
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+  }
 
   footer {
-    padding: 40px 24px 60px;
+    padding: 32px 24px 56px;
     text-align: center;
-    border-top: 1px solid var(--line);
   }
   footer p {
     font-size: 12px;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--ink-soft);
+  }
+
+  @media (max-width: 720px) {
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-visual { min-height: 160px; }
   }
 
   /* GATE MODAL */
   .gate-overlay { position: fixed; inset: 0; background: rgba(23,24,26,0.55); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 999; opacity: 0; pointer-events: none; transition: opacity .2s; padding: 20px; }
   .gate-overlay.open { opacity: 1; pointer-events: auto; }
-  .gate-card { position: relative; width: 100%; max-width: 420px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 36px 30px; box-shadow: 0 30px 70px rgba(23,24,26,0.25); }
+  .gate-card { position: relative; width: 100%; max-width: 420px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 36px 30px; box-shadow: 0 30px 70px rgba(23,24,26,0.25); }
   .gate-close { position: absolute; top: 14px; right: 16px; background: none; border: none; color: var(--ink-soft); font-size: 22px; cursor: pointer; line-height: 1; }
-  .gate-tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+  .gate-tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-ink); font-weight: 700; margin-bottom: 12px; }
   .gate-title { font-family: 'Lora', serif; font-weight: 700; font-size: 22px; line-height: 1.3; margin-bottom: 10px; }
   .gate-sub { font-size: 14px; color: var(--ink-soft); margin-bottom: 22px; }
   .gate-form { display: flex; flex-direction: column; gap: 12px; }
   .gate-form input { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 13px 15px; font-size: 14px; font-family: 'Public Sans', sans-serif; color: var(--ink); }
   .gate-form input::placeholder { color: var(--ink-soft); }
-  .gate-form input:focus { outline: none; border-color: var(--accent); }
-  .gate-form .btn { background: var(--accent); color: #fff; border: none; margin-top: 4px; }
-  .gate-form .btn:hover { background: #1a8bd9; }
+  .gate-form input:focus { outline: none; border-color: var(--accent-ink); }
+  .gate-form .btn { margin-top: 4px; width: 100%; }
   .gate-privacy { font-size: 11px; color: var(--ink-soft); text-align: center; margin-top: 14px; }
   .gate-thanks { display: none; text-align: center; padding: 10px 0; }
-  .gate-ico { font-size: 32px; color: var(--accent); margin-bottom: 12px; }
+  .gate-ico { font-size: 32px; color: var(--accent-ink); margin-bottom: 12px; }
   .gate-thanks h4 { font-family: 'Lora', serif; font-size: 19px; margin-bottom: 8px; }
   .gate-thanks p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
 </style>
@@ -162,25 +239,38 @@
 <body>
 
 <section class="hero">
-  <div class="tag">Central de materiais</div>
-  <h1>Análises e materiais gratuitos</h1>
-  <p>Preenche seus dados uma vez e libera acesso a tudo.</p>
+  <div class="hero-inner">
+    <div class="tag">Central de materiais</div>
+    <h1>Análises e materiais gratuitos</h1>
+    <p>Preenche seus dados uma vez e libera acesso a tudo.</p>
+  </div>
 </section>
 
-<div class="grid">
-
-  <div class="mat">
-    <div class="mat-cover">
-      <div class="mat-type">Análise de caso</div>
-      <div class="mat-cover-title">Como o Pastor da UAI vende 500 carros/mês</div>
+<div class="featured">
+  <div class="featured-card">
+    <div class="featured-visual">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg>
+      </div>
+      <div class="numeral">5</div>
     </div>
-    <div class="mat-body">
-      <div class="mat-marca">Edney Ulisses</div>
-      <h3>Raio-X: as 5 técnicas do Pastor da UAI</h3>
+    <div class="featured-body">
+      <div class="featured-type">Análise de caso</div>
+      <h2>Raio-X: as 5 técnicas do Pastor da UAI</h2>
+      <p>Como um vendedor de concessionária virou fenômeno nacional e vende cerca de 500 carros por mês, sem funil de tráfego pago e sem CRM sofisticado.</p>
+      <ul class="featured-highlights">
+        <li>As 5 técnicas reais, com como aplicar cada uma na sua loja</li>
+        <li>Onde esse modelo tem limite, sem crítica vazia</li>
+        <li>Fonte jornalística verificada, sem achismo</li>
+      </ul>
+      <div class="featured-marca">Por <strong>Edney Ulisses</strong></div>
       <button class="btn" onclick="abrirGate('Análise de caso','Raio-X: as 5 técnicas do Pastor da UAI','pastor-uai.html')">Acessar grátis →</button>
     </div>
   </div>
+</div>
 
+<div class="em-breve">
+  <p>Mais análises e materiais chegando em breve.</p>
 </div>
 
 <footer>
@@ -220,7 +310,7 @@
     document.getElementById('gateTag').textContent = tag;
     document.getElementById('gateTitle').textContent = titulo;
     document.getElementById('gateMaterial').value = titulo;
-    document.getElementById('gateSubject').value = 'Central de Materiais — Lead: ' + titulo;
+    document.getElementById('gateSubject').value = 'Central de Materiais - Lead: ' + titulo;
     document.getElementById('gateForm').style.display = '';
     document.getElementById('gateThanks').style.display = 'none';
     document.getElementById('gateOverlay').classList.add('open');
