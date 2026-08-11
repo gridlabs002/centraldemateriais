@@ -76,52 +76,36 @@
   .featured-card:hover { box-shadow: 0 16px 36px rgba(23,24,26,0.09); transform: translateY(-2px); }
   .featured-visual {
     position: relative;
-    background:
-      radial-gradient(circle at 25% 20%, rgba(29,155,240,0.16), transparent 55%),
-      linear-gradient(160deg, #F3F8FC, #EAF3FA);
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    background: linear-gradient(160deg, #F3F8FC, #EAF3FA);
     min-height: 280px;
+    overflow: hidden;
   }
-  .featured-visual .icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 12px;
-    background: #fff;
-    border: 1px solid rgba(29,155,240,0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 16px rgba(29,155,240,0.14);
+  .featured-visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-  .featured-visual .icon svg { width: 24px; height: 24px; stroke: var(--accent-ink); fill: none; stroke-width: 1.6; }
-  .featured-visual .numeral {
-    font-family: 'Lora', serif;
+  .featured-visual .featured-type-photo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(29,155,240,0.24);
+    padding: 6px 12px;
+    border-radius: 999px;
     font-weight: 700;
-    font-size: 96px;
-    line-height: 1;
-    color: rgba(11,111,184,0.14);
   }
   .featured-body {
     padding: 40px;
     display: flex;
     flex-direction: column;
-  }
-  .featured-type {
-    display: inline-flex;
-    align-self: flex-start;
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent-ink);
-    background: rgba(29,155,240,0.10);
-    border: 1px solid rgba(29,155,240,0.24);
-    padding: 5px 11px;
-    border-radius: 999px;
-    font-weight: 700;
-    margin-bottom: 18px;
   }
   .featured-body h2 {
     font-family: 'Lora', serif;
@@ -249,13 +233,10 @@
 <div class="featured">
   <div class="featured-card">
     <div class="featured-visual">
-      <div class="icon">
-        <svg viewBox="0 0 24 24"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg>
-      </div>
-      <div class="numeral">5</div>
+      <img src="assets/capa-pastor-uai.jpg" alt="Capa: Pastor da UAI">
+      <div class="featured-type-photo">Análise de caso</div>
     </div>
     <div class="featured-body">
-      <div class="featured-type">Análise de caso</div>
       <h2>Raio-X: as 5 técnicas do Pastor da UAI</h2>
       <p>Como um vendedor de concessionária virou fenômeno nacional e vende cerca de 500 carros por mês, sem funil de tráfego pago e sem CRM sofisticado.</p>
       <ul class="featured-highlights">

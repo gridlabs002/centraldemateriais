@@ -172,8 +172,19 @@
     display: flex;
     justify-content: space-between;
   }
+  .capa {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 40px;
+    aspect-ratio: 16/7;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(150deg, #EAF3FA, #F3F8FC);
+  }
+  .capa img { width: 100%; height: 100%; object-fit: cover; display: block; }
   @media print {
     body { padding: 0; background: #fff; }
+    .capa { break-inside: avoid; }
     .tecnica, .sintese { break-inside: avoid; }
     @page { size: A4; margin: 18mm; }
   }
@@ -181,6 +192,10 @@
 </head>
 <body>
 <div class="page">
+
+  <div class="capa">
+    <img src="assets/capa-pastor-uai.jpg" alt="Capa: Pastor da UAI">
+  </div>
 
   <div class="masthead">
     <img src="assets/edney-avatar.jpg" alt="Edney Ulisses">
