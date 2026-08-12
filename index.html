@@ -77,7 +77,8 @@
   .featured-visual {
     position: relative;
     background: linear-gradient(160deg, #F3F8FC, #EAF3FA);
-    min-height: 280px;
+    aspect-ratio: 16 / 9;
+    align-self: start;
     overflow: hidden;
   }
   .featured-visual img {
@@ -197,7 +198,6 @@
 
   @media (max-width: 720px) {
     .featured-card { grid-template-columns: 1fr; }
-    .featured-visual { min-height: 160px; }
   }
 
   /* GATE MODAL */
